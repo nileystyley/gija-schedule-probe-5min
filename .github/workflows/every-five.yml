@@ -1,0 +1,13 @@
+# Does a scheduled workflow fire for this account at all? Five minutes is
+# GitHub's minimum interval. No dispatch trigger, no secret, one echo. Read
+# at thirty minutes, not five (Nile, 2026-09-18): a first registration can
+# take a while, and a negative at minute six is not a result.
+name: every-five
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "every-five fired at $(date -u)"
